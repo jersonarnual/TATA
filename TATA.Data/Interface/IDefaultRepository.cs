@@ -10,5 +10,6 @@ namespace TATA.Data.Interface
     public interface IDefaultRepository<T> where T : BaseEntity
     {
         IEnumerable<T> GetAll();
+        bool Insert(T entity);
     }
 }

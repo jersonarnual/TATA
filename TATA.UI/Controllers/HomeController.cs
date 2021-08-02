@@ -42,12 +42,13 @@ namespace TATA.UI.Controllers
                 TempData["message"] = "sucedio un inconveniente con los datos";
                 return View();
             }
-            //LogResultDTO logResultDTO = _mapper.Map<LogResultDTO>(model);
             LogResultDTO logResultDTO = new LogResultDTO(){
             Sentence = model.Sentence
             };
             List<DetailsLogDTO> detailsLogs = _business.GetDuplicates(logResultDTO);
             model.details = detailsLogs;
+            logResultDTO.ListDetailsLogDTO = detailsLogs;
+            _business.Insert(logResultDTO);
             return View(model);
         }
 

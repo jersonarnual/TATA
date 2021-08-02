@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TATA.Infraestructure.DTO
 {
@@ -10,5 +11,6 @@ namespace TATA.Infraestructure.DTO
         public DateTime? CreateTime { get; set; }
         public DateTime? UpdateTime { get; set; }
         public string Sentence { get; set; }
+        public virtual ICollection<DetailsLogDTO> ListDetailsLogDTO { get; set; }
     }
 }

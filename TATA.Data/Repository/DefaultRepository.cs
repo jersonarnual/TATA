@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using TATA.Data.Context;
 using TATA.Data.Interface;
@@ -25,7 +26,23 @@ namespace TATA.Data.Repository
         public IEnumerable<T> GetAll()
         {
             return table.AsQueryable();
-        } 
+        }
+        public bool Insert(T entity)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(entity.Id.ToString()) || entity.Id == Guid.Empty)
+                    entity.Id = Guid.NewGuid();
+                entity.CreateTime = DateTime.Now;
+                table.Add(entity);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
         #endregion
     }
 }
